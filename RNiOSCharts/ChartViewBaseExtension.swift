@@ -99,6 +99,28 @@ extension ChartViewBase {
             self.drawMarkers = json["drawMarkers"].boolValue;
         }
 
+        if json["marker"].exists() {
+            var markerFont = UIFont.systemFontOfSize(12.0);
+
+            if json["marker"]["markerFontSize"].exists() {
+                markerFont = markerFont.fontWithSize(CGFloat(json["marker"]["markerFontSize"].floatValue));
+            }
+
+            if json["marker"]["markerFontName"].exists() {
+                markerFont = UIFont(
+                  name: json["marker"]["markerFontName"].stringValue,
+                  size: markerFont.pointSize
+                )!;
+            }
+
+            self.marker = BalloonMarker(
+              color: RCTConvert.UIColor(json["marker"]["markerColor"].intValue),
+              font: markerFont,
+              textColor: RCTConvert.UIColor(json["marker"]["markerTextColor"].intValue),
+              insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)
+            )
+        }
+
         if json["showLegend"].exists() {
             self.legend.enabled = json["showLegend"].boolValue;
         }
@@ -208,7 +230,7 @@ extension ChartViewBase {
             }
 
             if json["legend"]["colors"].exists() {
-                let arrColors = json["legend"]["colors"].arrayObject as! [Int];
+                let arrColors = json["legend"]["colors"].arrayValue.map({$0.intValue});
                 legendColors = arrColors.map({return RCTConvert.uiColor($0)});
                 if legendLabels.count == legendColors.count {
                     legend.setCustom(colors: legendColors, labels: legendLabels);
@@ -216,7 +238,7 @@ extension ChartViewBase {
             }
 
             if json["legend"]["labels"].exists() {
-                legendLabels = json["legend"]["labels"].arrayObject as! [String];
+                legendLabels = json["legend"]["labels"].arrayValue.map({$0.stringValue});
                 if legendLabels.count == legendColors.count {
                     legend.setCustom(colors:  legendColors, labels: legendLabels);
                 }
@@ -240,7 +262,7 @@ extension ChartViewBase {
         }
 
         if json["highlightValues"].exists() {
-            let highlightValues = json["highlightValues"].arrayObject as! [Int];
+            let highlightValues = json["highlightValues"].arrayValue.map({$0.intValue});
             self.highlightValues(highlightValues.map({return ChartHighlight(xIndex: $0, dataSetIndex: 0)}));
         }
 

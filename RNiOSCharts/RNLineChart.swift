@@ -38,7 +38,7 @@ class RNLineChart : LineChartView, ChartViewDelegate {
         };
         
         if json["labels"].exists() {
-            labels = json["labels"].arrayObject as! [String];
+            labels = json["labels"].arrayValue.map({$0.stringValue});
         }
       
         self.data = getLineData(labels, json: json);
