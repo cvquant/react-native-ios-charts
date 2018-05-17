@@ -4,6 +4,7 @@ import {
   NativeModules,
   findNodeHandle
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import {
   globalCommonProps,
@@ -31,15 +32,15 @@ class ScatterChart extends Component {
 }
 
 ScatterChart.propTypes = {
-  config: React.PropTypes.shape({
+  config: PropTypes.shape({
     ...globalCommonProps,
     ...barLineCommonProps,
-    dataSets: React.PropTypes.arrayOf(React.PropTypes.shape({
+    dataSets: PropTypes.arrayOf(PropTypes.shape({
       ...commonDataSetProps,
-      scatterShapeSize: React.PropTypes.number,
-      scatterShapeHoleRadius: React.PropTypes.number,
-      scatterShapeHoleColor: React.PropTypes.string,
-      scatterShape: React.PropTypes.oneOf([
+      scatterShapeSize: PropTypes.number,
+      scatterShapeHoleRadius: PropTypes.number,
+      scatterShapeHoleColor: PropTypes.string,
+      scatterShape: PropTypes.oneOf([
         'Square',
         'Circle',
         'Triangle',
@@ -48,7 +49,7 @@ ScatterChart.propTypes = {
       ])
     }))
   }),
-  onSelect: React.PropTypes.func,
+  onSelect: PropTypes.func,
 };
 
 export default ScatterChart;
