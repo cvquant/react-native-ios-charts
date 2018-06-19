@@ -13,4 +13,8 @@ class RNHorizontalBarChartManager : RCTViewManager {
     override func view() -> UIView! {
         return RNHorizontalBarChart();
     }
+    
+    override open static func requiresMainQueueSetup() -> Bool {
+        return true;
+    }
 }

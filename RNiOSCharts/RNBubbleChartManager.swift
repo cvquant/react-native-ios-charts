@@ -13,4 +13,8 @@ class RNBubbleChartManager : RCTViewManager {
   override func view() -> UIView! {
     return RNBubbleChart();
   }
+    
+  override open static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
 }
