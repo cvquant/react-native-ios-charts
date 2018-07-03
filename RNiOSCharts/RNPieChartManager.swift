@@ -13,4 +13,8 @@ class RNPieChartManager : RCTViewManager {
   override func view() -> UIView! {
     return RNPieChart();
   }
+    
+  override open static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
 }

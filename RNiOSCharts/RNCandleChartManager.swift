@@ -20,4 +20,8 @@ class RNCandleStickChartManager : RCTViewManager {
             view.setVisibleXRangeMaximum(value);
         }
     }
+    
+    override open static func requiresMainQueueSetup() -> Bool {
+        return true;
+    }
 }
