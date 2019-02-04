@@ -28,7 +28,7 @@ class RNRadarChart : RadarChartView {
     var minimumDecimalPlaces: Int = 0;
     var labels: [String] = [];
 
-    var json: JSON = nil;
+    var json: JSON = JSON.null;
     if let data = config.data(using: String.Encoding.utf8) {
       json = try! JSON(data: data);
     };
