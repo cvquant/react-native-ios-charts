@@ -19,7 +19,7 @@ extension ChartViewBase {
         self.descriptionText = "";
         self.backgroundColor = UIColor(red: 255.0, green: 255.0, blue: 255.0, alpha: 0.0);
 
-        var json: JSON = nil;
+        var json: JSON = JSON.null;
         if let data = config.data(using: String.Encoding.utf8) {
             json = try! JSON(data: data);
         };
