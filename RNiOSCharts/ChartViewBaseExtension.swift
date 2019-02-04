@@ -21,7 +21,7 @@ extension ChartViewBase {
 
         var json: JSON = nil;
         if let data = config.data(using: String.Encoding.utf8) {
-            json = JSON(data: data);
+            json = try! JSON(data: data);
         };
 
         if json["backgroundColor"].exists() {
