@@ -17,9 +17,9 @@ extension BarLineChartViewBase {
         var maximumDecimalPlaces: Int = 0;
         var minimumDecimalPlaces: Int = 0;
 
-        var json: JSON = nil;
+        var json: JSON = JSON.null;
         if let data = config.data(using: String.Encoding.utf8) {
-            json = JSON(data: data);
+            json = try! JSON(data: data);
         };
 
         if json["gridBackgroundColor"].exists() {
@@ -731,14 +731,14 @@ extension BarLineChartViewBase {
             self.leftAxis.valueFormatter?.maximumFractionDigits = maximumDecimalPlaces;
             self.rightAxis.valueFormatter?.maximumFractionDigits = maximumDecimalPlaces;
         }
-        
+
         if json["viewport"].exists() {
-            
+
             if json["viewport"]["left"].exists() &&
                 json["viewport"]["top"].exists() &&
                 json["viewport"]["right"].exists() &&
                 json["viewport"]["bottom"].exists() {
-                
+
                 self.setViewPortOffsets(
                     left: CGFloat(json["viewport"]["left"].floatValue),
                     top: CGFloat(json["viewport"]["top"].floatValue),

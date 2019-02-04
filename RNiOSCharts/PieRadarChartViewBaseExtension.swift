@@ -10,30 +10,30 @@ import Charts
 import SwiftyJSON
 
 extension PieRadarChartViewBase {
- 
+
   func setPieRadarChartViewBaseProps(_ config: String!) {
     setChartViewBaseProps(config);
-    
-    var json: JSON = nil;
+
+    var json: JSON = JSON.null;
     if let data = config.data(using: String.Encoding.utf8) {
-      json = JSON(data: data);
+      json = try! JSON(data: data);
     };
-   
+
     if json["rotationEnabled"].exists() {
       self.rotationEnabled = json["rotationEnabled"].boolValue;
     }
-    
+
     if json["rotationAngle"].exists() {
       self.rotationAngle = CGFloat(json["rotationAngle"].floatValue);
     }
-    
+
     if json["rotationWithTwoFingers"].exists() {
       self.rotationWithTwoFingers = json["rotationWithTwoFingers"].boolValue;
     }
-    
+
     if json["minOffset"].exists() {
       self.minOffset = CGFloat(json["minOffset"].floatValue);
     }
-    
+
   }
 }
